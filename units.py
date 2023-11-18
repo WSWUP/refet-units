@@ -20,8 +20,8 @@ SUPPORTED_UNITS = [
     'pa',
     'langleys',
     'w m-2', 'w/m2',
-    'mph', 'kmd',
-    'ft', 'feet', 
+    'mph', 'kmd','kmh',
+    'ft', 'feet',
     'rad', 'radian', 'radians',
 ]
 SUPPORTED_UNITS.extend(RS_HOURLY_UNITS)
@@ -80,6 +80,8 @@ def convert(values, variable, unit, timestep=None):
             values *= 0.44704
         elif unit.lower() in ['kmd']:
             values *= 1000.0 / 86400.0
+        elif unit.lower() in ['kmh']:
+            values *= 1000.0 / 3600.0
     elif variable in ['zw', 'elev']:
         if unit.lower() in ['ft', 'feet']:
             values *= 0.3048
