@@ -19,6 +19,7 @@ SUPPORTED_UNITS = [
     'f', 'fahrenheit',
     'pa',
     'langleys',
+    'kw/m2', 'kw m-2','kw/m2','kw/m2',
     'w m-2', 'w/m2',
     'mph', 'kmd','kmh',
     'ft', 'feet',
@@ -69,6 +70,13 @@ def convert(values, variable, unit, timestep=None):
                 values *= 0.0864
             elif timestep.lower() == 'hourly':
                 values *= 0.0036
+            else:
+                raise ValueError(f'unsupported rs timestep parameter: {timestep}')
+        elif unit.lower() in ['kw/m2', 'kw m-2','kw/m2','kw/m2']:
+            if timestep.lower() == 'daily':
+                values *= 86.4
+            elif timestep.lower() == 'hourly':
+                values *= 3.6
             else:
                 raise ValueError(f'unsupported rs timestep parameter: {timestep}')
         elif unit.lower() in RS_DAILY_UNITS:
