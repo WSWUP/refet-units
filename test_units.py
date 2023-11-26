@@ -58,6 +58,18 @@ def test_convert_unsupported_timestep(timestep):
 def test_convert_temperature(variable, unit, value, expected):
     assert expected == units.convert(value, variable, unit)
 
+@pytest.mark.parametrize(
+    'variable, unit, value, expected',
+    [
+        ['precip', 'm/d', 0.001, 1],
+        ['precip', 'in/d', 1, 25.4],
+        ['precip', 'ft/d', 1, 304.8],
+    ]
+)
+def test_convert_temperature(variable, unit, value, expected):
+    assert expected == units.convert(value, variable, unit)
+
+
 
 @pytest.mark.parametrize(
     'variable, unit, value, expected',
