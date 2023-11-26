@@ -17,7 +17,8 @@ RS_DAILY_UNITS = ['w m-2 d-1', 'w m-2 day-1', 'w/m2/d', 'w/m2/day']
 SUPPORTED_UNITS = [
     'k', 'kelvin',
     'f', 'fahrenheit',
-    'pa',
+    'pa', 'mbar', 'atm',
+    'torr', 'mmhg',
     'langleys',
     'kw/m2', 'kw m-2','kw/m2','kw/m2',
     'w m-2', 'w/m2',
@@ -62,6 +63,14 @@ def convert(values, variable, unit, timestep=None):
     elif variable == 'ea':
         if unit.lower() in ['pa']:
             values /= 1000.0
+        if unit.lower() in ['mbar']:
+            values /= 0.1
+        if unit.lower() in ['atm']:
+            values /= 0.00986923
+        if unit.lower() in ['torr']:
+            values /= 7.50062
+        if unit.lower() in ['mmhg']:
+            values /= 7.50062
     elif variable == 'rs':
         if unit.lower() in ['langleys']:
             values *= 0.041868
