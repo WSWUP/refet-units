@@ -9,6 +9,7 @@ DEFAULT_UNITS = [
     'm s-1', 'm/s',
     'm', 'meter', 'meters',
     'deg', 'degree', 'degrees',
+    'mm/d','mm d-1',
 ]
 RS_HOURLY_UNITS = [
     'w m-2 h-1', 'w m-2 hr-1', 'w m-2 hour-1', 'w/m2/hr', 'w/m2/hour'
@@ -25,6 +26,8 @@ SUPPORTED_UNITS = [
     'mph', 'kmd','kmh','mpd',
     'ft', 'feet',
     'rad', 'radian', 'radians',
+    'm/d', 'in/d','ft/d',
+
 ]
 SUPPORTED_UNITS.extend(RS_HOURLY_UNITS)
 SUPPORTED_UNITS.extend(RS_DAILY_UNITS)
@@ -60,6 +63,13 @@ def convert(values, variable, unit, timestep=None):
             values *= (5.0 / 9)
         elif unit.lower() in ['k', 'kelvin']:
             values -= 273.15
+    elif variable in ['precip', 'prec', 'prcp','precipitation']:
+        if unit.lower() in ['m/d']:
+            values *= 1000
+        if unit.lower() in ['in/d']:
+            values *= 25.4
+        if unit.lower() in ['ft/d']:
+            values *= 304.8
     elif variable == 'ea':
         if unit.lower() in ['pa']:
             values /= 1000.0
