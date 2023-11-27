@@ -20,7 +20,7 @@ SUPPORTED_UNITS = [
     'pa',
     'langleys',
     'w m-2', 'w/m2',
-    'mph', 'kmd','kmh',
+    'mph', 'kmd','kmh','mpd',
     'ft', 'feet',
     'rad', 'radian', 'radians',
 ]
@@ -82,6 +82,8 @@ def convert(values, variable, unit, timestep=None):
             values *= 1000.0 / 86400.0
         elif unit.lower() in ['kmh']:
             values *= 1000.0 / 3600.0
+        elif unit.lower() in ['mpd']:
+            values *= 1609.34 / 86400.0
     elif variable in ['zw', 'elev']:
         if unit.lower() in ['ft', 'feet']:
             values *= 0.3048

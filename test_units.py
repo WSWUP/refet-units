@@ -89,7 +89,8 @@ def test_convert_solar_irradiance(variable, unit, timestep, value, expected):
     [
         ['uz', 'mph', 1, 0.44704],
         ['uz', 'kmd', 1, 0.011574074074074073],
-        ['uz', 'kmh', 1, 0.27777777777777778]
+        ['uz', 'kmh', 1, 0.27777777777777778],
+        ['uz', 'mpd', 1, 0.01862662037037037],
     ]
 )
 def test_convert_velocity(variable, unit, value, expected):
