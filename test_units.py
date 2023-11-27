@@ -71,10 +71,13 @@ def test_convert_pressure(variable, unit, value, expected):
 
 @pytest.mark.parametrize(
     'variable, unit, timestep, value, expected',
+    # expected unit is MJ/m2
     [
         ['rs', 'langleys', None, 1, 0.041868],
         ['rs', 'W/m2', 'daily', 1, 0.0864],
         ['rs', 'W m-2', 'hourly', 1, 0.0036],
+        ['rs', 'kw/m2','hourly',1, 3.6],
+        ['rs', 'kw/m2','daily', 1, 86.4],
         # Assuming we only need to test one of the supported Rs unit combinations
         ['rs', 'w m-2 d-1', None, 1, 0.0864],
         ['rs', 'w m-2 h-1', None, 1, 0.0036],
