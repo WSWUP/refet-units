@@ -62,7 +62,11 @@ def test_convert_temperature(variable, unit, value, expected):
 @pytest.mark.parametrize(
     'variable, unit, value, expected',
     [
-        ['ea', 'Pa', 1000, 1],
+        ['ea', 'Pa', 1000, 1], 
+        ['ea', 'mbar', 0.1, 1],
+        ['ea', 'atm', 0.00986923, 1],
+        ['ea', 'torr', 7.50062, 1],
+        ['ea', 'mmhg', 7.50062, 1], 
     ]
 )
 def test_convert_pressure(variable, unit, value, expected):
